@@ -8,5 +8,6 @@ public class ShopMain {
         shop.setBounds(100, 100, 1277, 644);
         shop.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         shop.setVisible(true);
+
     }
 }
