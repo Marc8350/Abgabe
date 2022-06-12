@@ -2,3 +2,8 @@ https://docs.oracle.com/javase/tutorial/uiswing/components/table.html
 https://www.youtube.com/watch?v=GM3P5vAOjx8
 https://github.com/Anjal1p/Windows-10-Calculator/blob/master/src/ButtonsPanel.java
 https://www.youtube.com/watch?v=Cxp_HvXZh6g
+
+
+/** Todo: 1. Automatische Formatierung der Tabelle
+    2. Entweder Tabelle mit Checkboxen versehen
+    3. Eingabe für Bestellungen erstellen.
