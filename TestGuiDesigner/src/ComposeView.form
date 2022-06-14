@@ -1,14 +1,3 @@
-https://docs.oracle.com/javase/tutorial/uiswing/components/table.html
-https://www.youtube.com/watch?v=GM3P5vAOjx8
-https://github.com/Anjal1p/Windows-10-Calculator/blob/master/src/ButtonsPanel.java
-https://www.youtube.com/watch?v=Cxp_HvXZh6g
-
-
-/** Todo: 1. Automatische Formatierung der Tabelle
-    2. Entweder Tabelle mit Checkboxen versehen
-    3. Eingabe für Bestellungen erstellen.
-
-
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ComposeView">
   <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="FormLayout">

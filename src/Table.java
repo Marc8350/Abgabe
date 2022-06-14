@@ -3,10 +3,16 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 
-public class SelectionView extends JPanel{
-    SelectionView(){
+public class Table extends JPanel{
+    private String[] columnNames;
+    private Object[][] data;
+    private Object[] longValues;
+    public Table(String[] columnNames, Object[][] data, Object[] longValues){
         super(new GridLayout(1,0));
-        JTable table = new JTable(new SelectionTableModel());
+        this.columnNames = columnNames;
+        this.data = data;
+        this.longValues = longValues;
+        JTable table = new JTable(new SelectionTableModel(columnNames,data,longValues));
         table.setPreferredScrollableViewportSize(new Dimension(500,70));
         table.setFillsViewportHeight(true);
         //Create the scroll pane and add the table to it.
@@ -30,7 +36,7 @@ public class SelectionView extends JPanel{
         TableCellRenderer headerRenderer =
                 table.getTableHeader().getDefaultRenderer();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < this.columnNames.length; i++) {
             column = table.getColumnModel().getColumn(i);
 
             comp = headerRenderer.getTableCellRendererComponent(
