@@ -1,9 +1,9 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -13,12 +13,14 @@ import java.util.Map;
  * ArrayList mit ListElement Objekten.
  */
 public class InputData {
-    private  ArrayList<ListElement> product_list = new ArrayList<ListElement>();
+    public ArrayList<ListElement> product_list = new ArrayList<ListElement>();
     public  String[] column_names_AlternativenTable;
     public String[] column_names_InformationsTable;
+    public String[] column_names_Warenkorb;
     public Object[][] data_Alternativen;
     public  Object[] longValues_AlternativenTable;
     public  Object[] longValues_InformationsTable;
+    public Object[] longValues_Warenkorb;
     public  void readCSVinput() {
         String line;
         try {
@@ -37,14 +39,28 @@ public class InputData {
             System.out.println("Fehlerhafte CSV Datei");
         }
     }
-    public Object[][] create_data_Inforamtionsbereich(){
-        Object[][] data = new Object[product_list.size()][3];
-        for(int i = 0; i<product_list.size(); i++){
-            data[i] = new String[]{product_list.get(i).getProduct_name(),product_list.get(i).getDescription(),String.valueOf(product_list.get(i).getPrice())};
-        }
+    public Object[][] create_data_Inforamtionsbereich(ListElement latestViewedProduct){
+        Object[][] data = new Object[][]{new Object[]{latestViewedProduct.getProduct_name(),latestViewedProduct.getPrice(),latestViewedProduct.getDescription()}};
         return data;
     }
-    private Object[] create_long_values(){
+    public Object[][] create_data_Warenkorb(ArrayList<ListElement> input){
+        input.sort(ListElement.lexorder);
+        Object[][] data = new Object[input.size()+1][2];
+        int index = 0;
+        for(ListElement i : input){
+            data[index][0] = i.getPrice();
+            data[index][1] = i.getProduct_name();
+            index++;
+        }
+        int sum = 0;
+        for(int i = 0; i <input.size(); i++){
+              sum += (int) data[i][0];
+        }
+        data[input.size()][0] = sum;
+        data[input.size()][1] = ": Total";
+        return data;
+    }
+    private Object[] create_long_values_Information(){
         String[] names = new String[product_list.size()];
         String[] descriptions = new String[product_list.size()];
         String[] prices = new String[product_list.size()];
@@ -55,7 +71,25 @@ public class InputData {
             prices[index] = String.valueOf(i.getPrice());
             index++;
         }
-        return new Object[]{getlongest(names),getlongest(descriptions),getlongest(prices)};
+        return new Object[]{getlongest(names),getlongest(prices),getlongest(descriptions)};
+    }
+    private Object[] create_long_values_Auswahl(){
+        String[] names = new String[product_list.size()];
+        int index = 0;
+        for(ListElement i : product_list){
+            names[index] = i.getProduct_name();
+            index++;
+        }
+        return new Object[]{getlongest(names),getlongest(names),getlongest(names)};
+    }
+    private Object[] create_long_values_Warenkorb(){
+        String[] names = new String[product_list.size()];
+        int index = 0;
+        for(ListElement i : product_list){
+            names[index] = i.getProduct_name();
+            index++;
+        }
+        return new Object[]{"Preise", getlongest(names)};
     }
     private String getlongest(String[] o){
         String keep_String ="";
@@ -100,9 +134,12 @@ public class InputData {
     public InputData() {
         readCSVinput();
         this.column_names_AlternativenTable = new String[]{"Komponente ", "Alternative 1 ","Alternative 2 "};
-        this.longValues_AlternativenTable = new Object[4];
+        this.longValues_AlternativenTable = create_long_values_Auswahl();
         this.data_Alternativen = new Object[4][3];
-        this.column_names_InformationsTable = new String[]{"Bezeichnung", "Preis", "Beschreibung"};
         setData_Alternativen();
+        this.column_names_InformationsTable = new String[]{"Bezeichnung", "Preis", "Beschreibung"};
+        this.longValues_InformationsTable = create_long_values_Information();
+        this.longValues_Warenkorb = create_long_values_Warenkorb();
+        this.column_names_Warenkorb = new String[]{"Preise ","Bezeichnung"};
     }
 }
