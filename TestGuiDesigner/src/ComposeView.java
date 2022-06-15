@@ -6,6 +6,7 @@ public class ComposeView extends JFrame{
     private JTable Warenkorb;
     private JTable table1;
     private JTextField maximalerPreisTextField;
+    private JButton auswahlZurücksetzenButton;
     private JButton checkoutButton;
 
 

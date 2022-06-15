@@ -77,15 +77,6 @@
           <text value="maximaler Preis"/>
         </properties>
       </component>
-      <component id="5b811" class="javax.swing.JButton" binding="checkoutButton" default-binding="true">
-        <constraints>
-          <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <text value="Checkout"/>
-        </properties>
-      </component>
       <component id="9fefa" class="javax.swing.JTable" binding="Warenkorb">
         <constraints>
           <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
@@ -94,6 +85,24 @@
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
         <properties/>
+      </component>
+      <component id="3cba8" class="javax.swing.JButton" binding="auswahlZurücksetzenButton" default-binding="true">
+        <constraints>
+          <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <text value="Auswahl zurücksetzen"/>
+        </properties>
+      </component>
+      <component id="af597" class="javax.swing.JButton" binding="checkoutButton" default-binding="true">
+        <constraints>
+          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <text value="Checkout"/>
+        </properties>
       </component>
     </children>
   </grid>
