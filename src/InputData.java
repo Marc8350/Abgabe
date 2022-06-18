@@ -3,7 +3,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -32,6 +31,7 @@ public class InputData {
                 int price = Integer.valueOf((String) content[1]);
                 product_list.add(new ListElement(product_name,description,price));
             }
+            product_list.add(new ListElement("Keine Extras", " ", 0));
             //ordnen der productliste nach dem Alphabet
             product_list.sort(ListElement.lexorder);
 
@@ -130,6 +130,29 @@ public class InputData {
             }
             i++;
         }
+    }
+    public void selectItem(String bezeichner){
+        product_list.get(suchen(bezeichner)).setSelected(true);
+    }
+    public boolean isSelected(String bezeichner){
+        if(product_list.get(suchen(bezeichner)).isSelected())
+            return true;
+        else
+            return false;
+    }
+    public void resetSelection(){
+        for(ListElement i: product_list){
+            i.setSelected(false);
+        }
+    }
+    private int suchen (String bezeichenr){
+        int index = 0;
+        for(ListElement i : product_list){
+            if (i.getProduct_name().equals(bezeichenr))
+                break;
+            index++;
+        }
+        return index;
     }
     public InputData() {
         readCSVinput();

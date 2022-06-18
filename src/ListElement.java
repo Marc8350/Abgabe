@@ -7,6 +7,7 @@ public class ListElement implements Comparable<ListElement>{
     private String product_name;
     private String description;
     private int price;
+    private boolean selected;
 
     /**
      *
@@ -18,6 +19,15 @@ public class ListElement implements Comparable<ListElement>{
         this.product_name = product_name;
         this.description = description;
         this.price = price;
+        this.selected = false;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     public String getProduct_name() {

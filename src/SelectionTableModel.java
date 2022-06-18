@@ -26,6 +26,10 @@ public class SelectionTableModel extends AbstractTableModel {
     public Object getValueAt(int row, int col) {
         return data[row][col];
     }
+    public void setValueAt(Object value, int row, int col){
+        data[row][col] = value;
+        fireTableCellUpdated(row, col);
+    }
     public final Object[] longValues;
     /*
      * JTable uses this method to determine the default renderer/
@@ -36,7 +40,6 @@ public class SelectionTableModel extends AbstractTableModel {
     public Class getColumnClass(int c) {
         return getValueAt(0, c).getClass();
     }
-
     /*
      * Don't need to implement this method unless your table's
      * editable.
