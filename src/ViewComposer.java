@@ -7,11 +7,10 @@ public class ViewComposer extends JFrame {
     private JTextField maximalerPreisTextField;
     private JButton auswahlZurücksetzenButton, checkoutButton;
     private JLabel Warenkorb, Auswahlbereich, Informationsbereich, MaxPreis;
-    private Table Informationstable, Warenkorbtable, AlternativenTable;
-
-    public ViewComposer() {
+    public Table Informationstable, Warenkorbtable, AlternativenTable;
+    public Control controller;
+    public ViewComposer(InputData datahouse) {
         super("Autoteileshop");
-        InputData datahouse = new InputData();
         GridBagLayout layout = new GridBagLayout();
         setLayout(layout);
         setBounds(100, 100, 1277, 644);
@@ -56,7 +55,7 @@ public class ViewComposer extends JFrame {
         constraints.gridy = 3;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        AlternativenTable = new Table(datahouse.column_names_AlternativenTable, datahouse.data_Alternativen, datahouse.longValues_AlternativenTable, datahouse);
+        AlternativenTable = new Table(datahouse.column_names_AlternativenTable, datahouse.data_Alternativen, datahouse.longValues_AlternativenTable);
         layout.setConstraints(AlternativenTable, constraints);
         add(AlternativenTable);
 
@@ -64,7 +63,7 @@ public class ViewComposer extends JFrame {
         constraints.gridy = 3;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        Warenkorbtable = new Table(datahouse.column_names_Warenkorb, datahouse.create_data_Warenkorb(datahouse.product_list), datahouse.longValues_Warenkorb);
+        Warenkorbtable = new Table(datahouse.column_names_Warenkorb, datahouse.create_data_Warenkorb(), datahouse.longValues_Warenkorb);
         layout.setConstraints(Warenkorbtable, constraints);
         add(Warenkorbtable);
 
@@ -97,23 +96,16 @@ public class ViewComposer extends JFrame {
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
         auswahlZurücksetzenButton = new JButton("Auswahl zurücksetzen");
-        auswahlZurücksetzenButton.addMouseListener(new ResetListener(datahouse, Informationstable, AlternativenTable, Warenkorbtable));
         layout.setConstraints(auswahlZurücksetzenButton, constraints);
         add(auswahlZurücksetzenButton);
 
     }
-
-    public static void composeView() {
-        JFrame shop = new JFrame("Autoteileshop");
-        shop.setTitle("Autoteile Shop");
-        InputData datahouse = new InputData();
-        shop.setBounds(100, 100, 1277, 644);
-        shop.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Table AlternativenTable = new Table(datahouse.column_names_AlternativenTable, datahouse.data_Alternativen, datahouse.longValues_AlternativenTable);
-        Table InformationsView = new Table(datahouse.column_names_InformationsTable, datahouse.create_data_Inforamtionsbereich(datahouse.product_list.get(1)), datahouse.longValues_InformationsTable);
-        Table Warenkorb = new Table(datahouse.column_names_Warenkorb, datahouse.create_data_Warenkorb(datahouse.product_list), datahouse.longValues_Warenkorb);
-        shop.setContentPane(Warenkorb);
-        shop.pack();
-        shop.setVisible(true);
+    public void setController(Control c){
+        this.controller = c;
+        System.out.println(this.AlternativenTable.getTable());
+        this.AlternativenTable.getTable().addMouseListener(new SelectionTableListener(this.controller.datahouse,this));
+        this.auswahlZurücksetzenButton.addActionListener(new ResetListener(c.datahouse, this));
     }
+
+
 }

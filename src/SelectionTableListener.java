@@ -4,10 +4,12 @@ import java.awt.event.MouseListener;
 
 public class SelectionTableListener implements MouseListener {
     InputData data;
+    ViewComposer view;
 
-    public SelectionTableListener(InputData data) {
+    public SelectionTableListener(InputData data, ViewComposer view) {
         super();
         this.data = data;
+        this.view = view;
     }
 
     @Override
@@ -30,6 +32,12 @@ public class SelectionTableListener implements MouseListener {
                 data.selectItem(value);
             }
         }
+        Object[][] items = data.data_Warenkorb;
+        for(int index = 0; index < items.length;index++){
+            view.Warenkorbtable.getTable().getModel().setValueAt(items[index][0], index, 0);
+            view.Warenkorbtable.getTable().getModel().setValueAt(items[index][1], index, 1);
+        }
+
     }
 
     @Override

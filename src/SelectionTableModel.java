@@ -30,6 +30,13 @@ public class SelectionTableModel extends AbstractTableModel {
         data[row][col] = value;
         fireTableCellUpdated(row, col);
     }
+    public void updateValues(InputData newdata){
+        for(int index1 = 0; index1 <2; index1++){
+            for(int index2 = 0; index2 < 4; index2++){
+                this.data[index1][index2] = newdata.data_Alternativen[index1][index2];
+            }
+        }
+    }
     public final Object[] longValues;
     /*
      * JTable uses this method to determine the default renderer/

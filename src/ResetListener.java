@@ -1,42 +1,25 @@
 import javax.swing.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class ResetListener implements MouseListener {
+
+public class ResetListener implements ActionListener {
     InputData data;
-    Table info, auswahl, warenkorb;
-    public ResetListener(InputData data, Table info, Table auswahl, Table warenkorb){
-        super();
+    ViewComposer view;
+
+    public ResetListener(InputData data, ViewComposer view) {
         this.data = data;
-        this.info = info;
-        this.auswahl = auswahl;
-        this.warenkorb = warenkorb;
-    }
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
+        this.view = view;
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-        System.out.println("Test");
-        data.resetSelection();
-
-        auswahl.fireChange();
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
+    public void actionPerformed(ActionEvent e) {
+        this.data.resetSelection();
+        JTable target = this.view.AlternativenTable.getTable();
+        for(int index1 = 1; index1 <3; index1++){
+            for(int index2 = 0; index2 < 4; index2++){
+                target.getModel().setValueAt(this.data.data_Alternativen[index1-1][index2], index1, index1);
+            }
+        }
     }
 }

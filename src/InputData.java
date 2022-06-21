@@ -20,6 +20,7 @@ public class InputData {
     public  Object[] longValues_AlternativenTable;
     public  Object[] longValues_InformationsTable;
     public Object[] longValues_Warenkorb;
+    public Object [][] data_Warenkorb;
     public  void readCSVinput() {
         String line;
         try {
@@ -43,9 +44,14 @@ public class InputData {
         Object[][] data = new Object[][]{new Object[]{latestViewedProduct.getProduct_name(),latestViewedProduct.getPrice(),latestViewedProduct.getDescription()}};
         return data;
     }
-    public Object[][] create_data_Warenkorb(ArrayList<ListElement> input){
-        input.sort(ListElement.lexorder);
-        Object[][] data = new Object[input.size()+1][2];
+    public Object[][] create_data_Warenkorb(){
+        product_list.sort(ListElement.lexorder);
+        ArrayList<ListElement> input = new ArrayList<ListElement>();
+        for(ListElement i : product_list){
+            if(i.isSelected())
+                input.add(i);
+        }
+        Object[][] data = new Object[9][2];
         int index = 0;
         for(ListElement i : input){
             data[index][0] = i.getPrice();
@@ -108,12 +114,12 @@ public class InputData {
         SelectionTable.put("Motor", new ArrayList<ListElement>());
         SelectionTable.put("Reifen", new ArrayList<ListElement>());
         SelectionTable.put("Extras", new ArrayList<ListElement>());
-        SelectionTable.get("Fahrzeug").add(this.product_list.get(3));
-        SelectionTable.get("Fahrzeug").add(this.product_list.get(5));
+        SelectionTable.get("Fahrzeug").add(this.product_list.get(4));
+        SelectionTable.get("Fahrzeug").add(this.product_list.get(6));
         SelectionTable.get("Motor").add(this.product_list.get(0));
         SelectionTable.get("Motor").add(this.product_list.get(2));
-        SelectionTable.get("Reifen").add(this.product_list.get(4));
-        SelectionTable.get("Reifen").add(this.product_list.get(6));
+        SelectionTable.get("Reifen").add(this.product_list.get(5));
+        SelectionTable.get("Reifen").add(this.product_list.get(7));
         SelectionTable.get("Extras").add(this.product_list.get(1));
         return SelectionTable;
     }
@@ -144,6 +150,7 @@ public class InputData {
         for(ListElement i: product_list){
             i.setSelected(false);
         }
+        setData_Alternativen();
     }
     private int suchen (String bezeichenr){
         int index = 0;
