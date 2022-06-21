@@ -13,11 +13,12 @@ public class Preislistener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int t = 0;
+        int upperlimit = 0;
         String content = this.view.maximalerPreisTextField.getText();
         try {
-            t = Integer.parseInt(content);
-            System.out.println(t);
+            upperlimit = Integer.parseInt(content);
+            this.view.maximalerPreisTextField.setBackground(Color.white);
+            data.upperlimit = upperlimit;
         } catch (NumberFormatException pi){
             this.view.maximalerPreisTextField.setBackground(Color.red);
         }

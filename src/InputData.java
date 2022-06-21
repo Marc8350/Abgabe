@@ -22,6 +22,7 @@ public class InputData {
     public Object[] longValues_Warenkorb;
     public Object [][] data_Warenkorb;
     public ArrayList<ListElement> latestselectet = new ArrayList<ListElement>();
+    public int upperlimit, currentvalue;
     public  void readCSVinput() {
         String line;
         try {
@@ -63,9 +64,11 @@ public class InputData {
         for(int i = 0; i <input.size(); i++){
               sum += (int) data[i][0];
         }
+        this.currentvalue = sum;
         data[input.size()][0] = sum;
         data[input.size()][1] = ": Total";
         data_Warenkorb = data;
+        System.out.println(currentvalue);
         return data;
     }
     private Object[] create_long_values_Information(){
@@ -156,7 +159,7 @@ public class InputData {
         setData_Alternativen();
 
     }
-    private int suchen (String bezeichenr){
+    public int suchen (String bezeichenr){
         int index = 0;
         for(ListElement i : product_list){
             if (i.getProduct_name().equals(bezeichenr))
@@ -175,5 +178,7 @@ public class InputData {
         this.longValues_InformationsTable = create_long_values_Information();
         this.longValues_Warenkorb = create_long_values_Warenkorb();
         this.column_names_Warenkorb = new String[]{"Preise ","Bezeichnung"};
+        this.upperlimit = 1000000;
+        this.currentvalue = 0;
     }
 }

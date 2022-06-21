@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,5 +29,7 @@ public class ResetListener implements ActionListener {
         this.view.Informationstable.getTable().getModel().setValueAt("", 0,0 );
         this.view.Informationstable.getTable().getModel().setValueAt("", 0,1 );
         this.view.Informationstable.getTable().getModel().setValueAt("", 0,2 );
+        this.data.currentvalue = 0;
+        this.view.AlternativenTable.getTable().setBackground(Color.white);
     }
 }

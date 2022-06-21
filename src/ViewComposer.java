@@ -1,22 +1,19 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class ViewComposer extends JFrame {
     public JTextField maximalerPreisTextField;
     private JButton auswahlZurücksetzenButton, checkoutButton;
     private JLabel Warenkorb, Auswahlbereich, Informationsbereich, MaxPreis;
     public Table Informationstable, Warenkorbtable, AlternativenTable;
-    public Control controller;
+    private InputData datahouse;
     public ViewComposer(InputData datahouse) {
         super("Autoteileshop");
         GridBagLayout layout = new GridBagLayout();
         setLayout(layout);
+        this.datahouse = datahouse;
         setBounds(100, 100, 1277, 644);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.insets = new Insets(5, 5, 5, 5);
@@ -94,12 +91,12 @@ public class ViewComposer extends JFrame {
         add(auswahlZurücksetzenButton);
 
     }
-    public void setController(Control c){
-        this.controller = c;
+    public void setController(){
+
         System.out.println(this.AlternativenTable.getTable());
-        this.AlternativenTable.getTable().addMouseListener(new SelectionTableListener(c.datahouse,this));
-        this.auswahlZurücksetzenButton.addActionListener(new ResetListener(c.datahouse, this));
-        this.maximalerPreisTextField.addActionListener(new Preislistener(this,c.datahouse));
+        this.AlternativenTable.getTable().addMouseListener(new SelectionTableListener(datahouse,this));
+        this.auswahlZurücksetzenButton.addActionListener(new ResetListener(datahouse, this));
+        this.maximalerPreisTextField.addActionListener(new Preislistener(this,datahouse));
         System.out.println("Success");
     }
 
