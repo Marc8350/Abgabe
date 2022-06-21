@@ -21,6 +21,7 @@ public class InputData {
     public  Object[] longValues_InformationsTable;
     public Object[] longValues_Warenkorb;
     public Object [][] data_Warenkorb;
+    public ArrayList<ListElement>
     public  void readCSVinput() {
         String line;
         try {
@@ -64,6 +65,7 @@ public class InputData {
         }
         data[input.size()][0] = sum;
         data[input.size()][1] = ": Total";
+        data_Warenkorb = data;
         return data;
     }
     private Object[] create_long_values_Information(){
@@ -151,6 +153,7 @@ public class InputData {
             i.setSelected(false);
         }
         setData_Alternativen();
+
     }
     private int suchen (String bezeichenr){
         int index = 0;

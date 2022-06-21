@@ -15,11 +15,15 @@ public class ResetListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         this.data.resetSelection();
-        JTable target = this.view.AlternativenTable.getTable();
-        for(int index1 = 1; index1 <3; index1++){
-            for(int index2 = 0; index2 < 4; index2++){
-                target.getModel().setValueAt(this.data.data_Alternativen[index1-1][index2], index1, index1);
-            }
+        JTable alternativenTableTable = this.view.AlternativenTable.getTable();
+        for(int index1 = 0; index1 <4; index1++){
+            alternativenTableTable.getModel().setValueAt(this.data.data_Alternativen[index1][1], index1, 1);
+            alternativenTableTable.getModel().setValueAt(this.data.data_Alternativen[index1][2], index1, 2);
+        }
+        Object[][] items = data.create_data_Warenkorb();
+        for(int index = 0; index < items.length;index++){
+            view.Warenkorbtable.getTable().getModel().setValueAt(items[index][0], index, 0);
+            view.Warenkorbtable.getTable().getModel().setValueAt(items[index][1], index, 1);
         }
     }
 }

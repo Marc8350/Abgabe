@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SelectionTableListener implements MouseListener {
     InputData data;
@@ -32,11 +34,12 @@ public class SelectionTableListener implements MouseListener {
                 data.selectItem(value);
             }
         }
-        Object[][] items = data.data_Warenkorb;
+        Object[][] items = data.create_data_Warenkorb();
         for(int index = 0; index < items.length;index++){
             view.Warenkorbtable.getTable().getModel().setValueAt(items[index][0], index, 0);
             view.Warenkorbtable.getTable().getModel().setValueAt(items[index][1], index, 1);
         }
+        this.view.Informationstable.getTable().getModel().
 
     }
 
