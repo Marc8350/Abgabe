@@ -1,3 +1,11 @@
+package View;
+
+import Controler.Preislistener;
+import Controler.ResetListener;
+import Controler.SelectionTableListener;
+import Model.InputData;
+import Model.Table;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,7 +30,7 @@ public class ViewComposer extends JFrame {
         constraints.gridy = 0;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        MaxPreis = new JLabel("Bitte hier Maximalen Preis als ganze Zahl eingeben eingeben");
+        MaxPreis = new JLabel("Bitte hier Maximalen Preis als ganze Zahl eingeben eingeben und mit Enter bestätigen");
         layout.setConstraints(MaxPreis, constraints);
         add(MaxPreis);
 
@@ -93,11 +101,9 @@ public class ViewComposer extends JFrame {
     }
     public void setController(){
 
-        System.out.println(this.AlternativenTable.getTable());
         this.AlternativenTable.getTable().addMouseListener(new SelectionTableListener(datahouse,this));
         this.auswahlZurücksetzenButton.addActionListener(new ResetListener(datahouse, this));
         this.maximalerPreisTextField.addActionListener(new Preislistener(this,datahouse));
-        System.out.println("Success");
     }
 
 

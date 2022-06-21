@@ -1,3 +1,9 @@
+package Controler;
+
+import Model.InputData;
+import Model.ListElement;
+import View.ViewComposer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;

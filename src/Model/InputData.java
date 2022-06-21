@@ -1,3 +1,7 @@
+package Model;
+
+import Model.ListElement;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,18 +13,13 @@ import java.util.Map;
 /**
  * Diese Klasse speichert die Daten aus dem in fo.csv File der die Rohdaten
  * über die einzelnen Produkte aus dem Onlineshop enthalten soll, in einer
- * ArrayList mit ListElement Objekten.
+ * ArrayList mit Model.ListElement Objekten.
  */
 public class InputData {
     public ArrayList<ListElement> product_list = new ArrayList<ListElement>();
-    public  String[] column_names_AlternativenTable;
-    public String[] column_names_InformationsTable;
-    public String[] column_names_Warenkorb;
-    public Object[][] data_Alternativen;
-    public  Object[] longValues_AlternativenTable;
-    public  Object[] longValues_InformationsTable;
-    public Object[] longValues_Warenkorb;
-    public Object [][] data_Warenkorb;
+    public  String[] column_names_AlternativenTable, column_names_InformationsTable, column_names_Warenkorb;
+    public Object[][] data_Alternativen, data_Warenkorb;
+    public  Object[] longValues_AlternativenTable,longValues_InformationsTable, longValues_Warenkorb ;
     public ArrayList<ListElement> latestselectet = new ArrayList<ListElement>();
     public int upperlimit, currentvalue;
     public  void readCSVinput() {
@@ -68,7 +67,6 @@ public class InputData {
         data[input.size()][0] = sum;
         data[input.size()][1] = ": Total";
         data_Warenkorb = data;
-        System.out.println(currentvalue);
         return data;
     }
     private Object[] create_long_values_Information(){

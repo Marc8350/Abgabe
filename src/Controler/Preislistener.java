@@ -1,3 +1,8 @@
+package Controler;
+
+import Model.InputData;
+import View.ViewComposer;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

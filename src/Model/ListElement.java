@@ -1,7 +1,9 @@
+package Model;
+
 import java.util.Comparator;
 
 /**
- * Die Klasse ListElement dient dazu einzelne Produkte als Objekte ab zu speichern.
+ * Die Klasse Model.ListElement dient dazu einzelne Produkte als Objekte ab zu speichern.
  */
 public class ListElement implements Comparable<ListElement>{
     private String product_name;
