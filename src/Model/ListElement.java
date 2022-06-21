@@ -6,9 +6,9 @@ import java.util.Comparator;
  * Die Klasse Model.ListElement dient dazu einzelne Produkte als Objekte ab zu speichern.
  */
 public class ListElement implements Comparable<ListElement>{
-    private String product_name;
-    private String description;
-    private int price;
+    private final String product_name;
+    private final String description;
+    private final int price;
     private boolean selected;
 
     /**

@@ -8,8 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Preislistener implements ActionListener {
-    private ViewComposer view;
-    private InputData data;
+    private final ViewComposer view;
+    private final InputData data;
     public Preislistener(ViewComposer view, InputData data) {
         this.view = view;
         this.data = data;
@@ -23,7 +23,10 @@ public class Preislistener implements ActionListener {
         try {
             upperlimit = Integer.parseInt(content);
             this.view.maximalerPreisTextField.setBackground(Color.white);
-            data.upperlimit = upperlimit;
+            if (data.currentvalue > upperlimit)
+                this.view.maximalerPreisTextField.setBackground(Color.red);
+            else
+                data.upperlimit = upperlimit;
         } catch (NumberFormatException pi){
             this.view.maximalerPreisTextField.setBackground(Color.red);
         }

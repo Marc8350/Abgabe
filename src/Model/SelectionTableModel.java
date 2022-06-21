@@ -5,8 +5,8 @@ import javax.swing.table.AbstractTableModel;
 
 public class SelectionTableModel extends AbstractTableModel {
 
-    private String [] columnNames;
-    private Object[][] data;
+    private final String [] columnNames;
+    private final Object[][] data;
 
     public SelectionTableModel(String[] columnNames, Object[][] data, Object[] longValues) {
         this.columnNames = columnNames;

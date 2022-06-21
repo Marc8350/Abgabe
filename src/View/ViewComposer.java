@@ -3,6 +3,7 @@ package View;
 import Controler.Preislistener;
 import Controler.ResetListener;
 import Controler.SelectionTableListener;
+import Controler.checkOutListener;
 import Model.InputData;
 import Model.Table;
 
@@ -11,15 +12,22 @@ import java.awt.*;
 
 public class ViewComposer extends JFrame {
     public JTextField maximalerPreisTextField;
-    private JButton auswahlZurücksetzenButton, checkoutButton;
-    private JLabel Warenkorb, Auswahlbereich, Informationsbereich, MaxPreis;
+    private final JButton auswahlZurücksetzenButton;
+    private final JButton checkoutButton;
+    private final JLabel Warenkorb;
+    private JLabel Auswahlbereich;
+    private final JLabel Informationsbereich;
+    private final JLabel MaxPreis;
     public Table Informationstable, Warenkorbtable, AlternativenTable;
-    private InputData datahouse;
+    private final InputData datahouse;
+    public final JFileChooser fileChooser;
     public ViewComposer(InputData datahouse) {
         super("Autoteileshop");
         GridBagLayout layout = new GridBagLayout();
         setLayout(layout);
         this.datahouse = datahouse;
+        fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         setBounds(100, 100, 1277, 644);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         GridBagConstraints constraints = new GridBagConstraints();
@@ -104,6 +112,7 @@ public class ViewComposer extends JFrame {
         this.AlternativenTable.getTable().addMouseListener(new SelectionTableListener(datahouse,this));
         this.auswahlZurücksetzenButton.addActionListener(new ResetListener(datahouse, this));
         this.maximalerPreisTextField.addActionListener(new Preislistener(this,datahouse));
+        this.checkoutButton.addActionListener(new checkOutListener(this));
     }
 
 

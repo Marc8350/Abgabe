@@ -145,10 +145,7 @@ public class InputData {
         latestselectet.add(product_list.get(suchen(bezeichner)));
     }
     public boolean isSelected(String bezeichner){
-        if(product_list.get(suchen(bezeichner)).isSelected())
-            return true;
-        else
-            return false;
+        return product_list.get(suchen(bezeichner)).isSelected();
     }
     public void resetSelection(){
         for(ListElement i: product_list){

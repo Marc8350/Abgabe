@@ -8,10 +8,10 @@ import javax.swing.table.TableColumn;
 import java.awt.*;
 
 public class Table extends JPanel{
-    private String[] columnNames;
-    private Object[][] data;
-    private Object[] longValues;
-    private JTable table;
+    private final String[] columnNames;
+    private final Object[][] data;
+    private final Object[] longValues;
+    private final JTable table;
     JTextField textField;
     public Table(String[] columnNames, Object[][] data, Object[] longValues){
         super(new GridLayout(1,0));
