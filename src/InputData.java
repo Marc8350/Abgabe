@@ -21,7 +21,7 @@ public class InputData {
     public  Object[] longValues_InformationsTable;
     public Object[] longValues_Warenkorb;
     public Object [][] data_Warenkorb;
-    public ArrayList<ListElement>
+    public ArrayList<ListElement> latestselectet = new ArrayList<ListElement>();
     public  void readCSVinput() {
         String line;
         try {
@@ -141,6 +141,7 @@ public class InputData {
     }
     public void selectItem(String bezeichner){
         product_list.get(suchen(bezeichner)).setSelected(true);
+        latestselectet.add(product_list.get(suchen(bezeichner)));
     }
     public boolean isSelected(String bezeichner){
         if(product_list.get(suchen(bezeichner)).isSelected())

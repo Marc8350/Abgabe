@@ -39,7 +39,10 @@ public class SelectionTableListener implements MouseListener {
             view.Warenkorbtable.getTable().getModel().setValueAt(items[index][0], index, 0);
             view.Warenkorbtable.getTable().getModel().setValueAt(items[index][1], index, 1);
         }
-        this.view.Informationstable.getTable().getModel().
+        ListElement item = data.latestselectet.get(data.latestselectet.size()-1);
+        this.view.Informationstable.getTable().getModel().setValueAt(item.getProduct_name(), 0,0 );
+        this.view.Informationstable.getTable().getModel().setValueAt(item.getPrice(), 0,1 );
+        this.view.Informationstable.getTable().getModel().setValueAt(item.getDescription(), 0,2 );
 
     }
 

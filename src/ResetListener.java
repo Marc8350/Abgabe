@@ -25,5 +25,8 @@ public class ResetListener implements ActionListener {
             view.Warenkorbtable.getTable().getModel().setValueAt(items[index][0], index, 0);
             view.Warenkorbtable.getTable().getModel().setValueAt(items[index][1], index, 1);
         }
+        this.view.Informationstable.getTable().getModel().setValueAt("", 0,0 );
+        this.view.Informationstable.getTable().getModel().setValueAt("", 0,1 );
+        this.view.Informationstable.getTable().getModel().setValueAt("", 0,2 );
     }
 }

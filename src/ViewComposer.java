@@ -1,10 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ViewComposer extends JFrame {
-    private JTextField maximalerPreisTextField;
+    public JTextField maximalerPreisTextField;
     private JButton auswahlZurücksetzenButton, checkoutButton;
     private JLabel Warenkorb, Auswahlbereich, Informationsbereich, MaxPreis;
     public Table Informationstable, Warenkorbtable, AlternativenTable;
@@ -24,7 +25,7 @@ public class ViewComposer extends JFrame {
         constraints.gridy = 0;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        MaxPreis = new JLabel("Bitte hier Maximalen Preis einegeben");
+        MaxPreis = new JLabel("Bitte hier Maximalen Preis als ganze Zahl eingeben eingeben");
         layout.setConstraints(MaxPreis, constraints);
         add(MaxPreis);
 
@@ -43,13 +44,6 @@ public class ViewComposer extends JFrame {
         Warenkorb = new JLabel("Warenkorb");
         layout.setConstraints(Warenkorb, constraints);
         add(Warenkorb);
-
-        constraints.gridx = 1;
-        constraints.gridy = 2;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        maximalerPreisTextField = new JTextField("Maximalen Preis eingeben");
-        layout.setConstraints(maximalerPreisTextField, constraints);
 
         constraints.gridx = 0;
         constraints.gridy = 3;
@@ -103,8 +97,10 @@ public class ViewComposer extends JFrame {
     public void setController(Control c){
         this.controller = c;
         System.out.println(this.AlternativenTable.getTable());
-        this.AlternativenTable.getTable().addMouseListener(new SelectionTableListener(this.controller.datahouse,this));
+        this.AlternativenTable.getTable().addMouseListener(new SelectionTableListener(c.datahouse,this));
         this.auswahlZurücksetzenButton.addActionListener(new ResetListener(c.datahouse, this));
+        this.maximalerPreisTextField.addActionListener(new Preislistener(this,c.datahouse));
+        System.out.println("Success");
     }
 
 
