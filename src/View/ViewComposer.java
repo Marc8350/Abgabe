@@ -12,12 +12,8 @@ import java.awt.*;
 
 public class ViewComposer extends JFrame {
     public JTextField maximalerPreisTextField;
-    private final JButton auswahlZurücksetzenButton;
-    private final JButton checkoutButton;
-    private final JLabel Warenkorb;
-    private JLabel Auswahlbereich;
-    private final JLabel Informationsbereich;
-    private final JLabel MaxPreis;
+    private final JButton auswahlZurücksetzenButton, checkoutButton;
+    private final JLabel Warenkorb, Informationsbereich, MaxPreis;
     public Table Informationstable, Warenkorbtable, AlternativenTable;
     private final InputData datahouse;
     public final JFileChooser fileChooser;

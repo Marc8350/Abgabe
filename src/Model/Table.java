@@ -12,7 +12,6 @@ public class Table extends JPanel{
     private final Object[][] data;
     private final Object[] longValues;
     private final JTable table;
-    JTextField textField;
     public Table(String[] columnNames, Object[][] data, Object[] longValues){
         super(new GridLayout(1,0));
         this.columnNames = columnNames;
@@ -37,13 +36,6 @@ public class Table extends JPanel{
         return table;
     }
 
-    public void fireChange(){
-        for(int i = 0; i < data.length; i++){
-            for (int j = 0; j < data[i].length; j++){
-                table.setValueAt(data[i][j], i, j);
-            }
-        }
-    }
     private void initColumnSizes(JTable table) {
         SelectionTableModel model = (SelectionTableModel) table.getModel();
         TableColumn column = null;

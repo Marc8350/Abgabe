@@ -8,6 +8,5 @@ public class ShopMain {
         ViewComposer test = new ViewComposer(data);
         test.setController();
         test.setVisible(true);
-        //View.ViewComposer.composeView();
     }
 }
